@@ -136,7 +136,7 @@ Response (Conforme regras de negócio acima)
 ```bash
 {
    "status" : "Success",
-   "message" : "Status update successfully.",
+   "message" : "Status updated successfully.",
    "data" : {
         "cause_id" : 1,
         "cause_name" : "Man Against Fire",
