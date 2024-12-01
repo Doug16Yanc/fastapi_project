@@ -6,8 +6,13 @@
   
 </p>
 
-<h3 align="center"> Python + FastAPI </h3>
+<h3 align="center" width="60%"> Python + FastAPI </h3>
 
+<h1 align="center" width="100%"> Descrição </h1>
+
+<p>
+  O seguinte projeto backend realiza a gestão de doações em criptoativos para causas solidárias e humanitárias, neste caso, as doações são feitas em ETH, criptomoeda da rede blockchain Ethereum, conhecida pelo suporte aos contratos inteligentes e pela criptografia de curva elíptica, e os valores doados são convertidos em dólar americano. Como regras de negócio, ficou estabelecido que a exclusão de uma causa só pode ser realizada após ter recebido um valor em doação, por mínimo que seja e esse montante doado tenha sido utilizado para a sua proposta de fato, ou seja, o status do montante foi atualizado de "stored" para "applied" (armazenado para aplicado) e claramente essa atualização só pode acontecer após ter ocorrido pelo menos uma doação para esta causa. Cada causa possui um código de certificação que valida sua veracidade, cada doação tem seu hash (função matemática de sentido uniderecional nas interações na internet) e cada valor em ETH é simbólico (décimos ou centésimos que representam muitas vezes cumprimento de contratos inteligentes ou apenas um gas fee desse tipo de tecnologia de sistema distribuído) e quando convertidos para o dólar representam valores consideráveis. Como exemplo, usei uma causa solidária que ajuda vítimas humanas e outros animais de desastres ambientais e incêndios florestais.
+</p>
 
 <h1 align="center" width="100%"> Como criar o projeto na sua máquina? </h1>
 
@@ -44,12 +49,211 @@ Abra o Visual Studio Code :
   code .
  ```
 
-Execute o servidor com : 
+Crie um arquivo main.py, escreva o código e execute o servidor com : 
   ```bash
   uvicorn main:app --reload
  ```
+Ou se preferir, apenas faça o git clone deste projeto :
 
-Link das coleções no Postman:
-[https://winter-capsule-897611.postman.co/workspace/fastapi_project~487cc3df-a778-41ac-8615-89f80b5a53ec/collection/28494279-d6b7875d-1255-4cce-b809-d82f5c581756?action=share&creator=28494279
-](https://www.postman.com/winter-capsule-897611/workspace/python-backend/collection/28494279-d6b7875d-1255-4cce-b809-d82f5c581756?action=share&creator=28494279)</p>
+  ```bash
+  git@github.com:Doug16Yanc/fastapi_project.git
+ ```
+
+<h1 align="center" width="100%"> Rotas no Postman </h1>
+
+<p>Link das coleções no Postman:
+https://winter-capsule-897611.postman.co/workspace/fastapi_project~487cc3df-a778-41ac-8615-89f80b5a53ec/collection/28494279-d6b7875d-1255-4cce-b809-d82f5c581756?action=share&creator=28494279
+https://www.postman.com/winter-capsule-897611/workspace/python-backend/collection/28494279-d6b7875d-1255-4cce-b809-d82f5c581756?action=share&creator=28494279</p>
+
+<h2 align="center" width="50%"> CAUSES </h2>
+
+<p> POST /causes </p>
+
+Cria uma causa.
+
+Response (Se não já houver uma causa com mesmo ID) :
+
+ ```bash
+{
+   "status" : "Success",
+   "message" : "Cause created successfully.",
+   "data" : {
+        "cause_id" : 1,
+        "cause_name" : "Man Against Fire",
+        "description" : "Assist human and other animal victims of environmental disasters and forest fires.",
+        "certification_code" : "0x563373",
+        "amount" : 0.0,
+        "status_amount" : "stored"
+    }
+}
+ ```
+<p> GET /causes/{cause_id} </p>
+
+Encontra uma causa por ID.
+
+Response (se encontrado)
+
+ ```bash
+{
+   "status" : "Success",
+   "message" : "Cause processed successfully.",
+   "data" : {
+        "cause_id" : 1,
+        "cause_name" : "Man Against Fire",
+        "description" : "Assist human and other animal victims of environmental disasters and forest fires.",
+        "certification_code" : "0x563373",
+        "amount" : 0.0,
+        "status_amount" : "stored"
+    }
+}
+```
+
+<p> GET /causes </p>
+
+Retorna uma lista das causas.
+
+Response (Se a lista não estiver vazia)
+
+```bash
+{
+   "status" : "Success",
+   "message" : "Causes processed successfully.",
+   "data" : {
+        "cause_id" : 1,
+        "cause_name" : "Man Against Fire",
+        "description" : "Assist human and other animal victims of environmental disasters and forest fires.",
+        "certification_code" : "0x563373",
+        "amount" : 0.0,
+        "status_amount" : "stored"
+    }
+}
+```                                                                                                                                                 
+<p> PUT /causes/{cause_id} </p>
+
+Atualiza apenas o status de uma causa encontrada pelo id e se esta tiver um montante acima de 0.0 (regra de negócio estabelecida).
+
+Response (Conforme regras de negócio acima)
+
+```bash
+{
+   "status" : "Success",
+   "message" : "Status update successfully.",
+   "data" : {
+        "cause_id" : 1,
+        "cause_name" : "Man Against Fire",
+        "description" : "Assist human and other animal victims of environmental disasters and forest fires.",
+        "certification_code" : "0x563373",
+        "amount" : 183.2015,
+        "status_amount" : "applied"
+    }
+}
+```       
+<p> DELETE /causes/{cause_id} </p>
+
+Deleta uma causa pelo ID se esta tiver aplicado o montante recebido em doações na sua proposta.
+
+Response (Conforme regra de negócio acima)
+
+```bash
+{
+   "status" : "Success",
+   "message" : "Cause deleted successfully.",
+   "data" : {
+        "cause_id" : 1,
+        "cause_name" : "Man Against Fire",
+        "description" : "Assist human and other animal victims of environmental disasters and forest fires.",
+        "certification_code" : "0x563373",
+        "amount" : 183.2015,
+        "status_amount" : "applied"
+    }
+}
+```
+
+<h2 align="center" width="50%"> DONATIONS </h2>
+  
+<p> POST /donations </p>  
+
+Realiza uma doação em ETH para uma causa existente e válida.
+
+Response:
+
+```bash
+{
+    "status": "Success",
+    "message": "Donation created successfully!",
+    "data": {
+        "donation": {
+            "donation_id": 1,
+            "address_account": "0x648485",
+            "cause_id": 1,
+            "value": 0.05
+        },
+        "transaction_hash": "qzou2vsv17bdd93h6fh1639ohwz7k8ys21f6qe6n5mpsffz4v6dldwkj4kerxdv2"
+    }
+}
+```
+<p> GET /donations/{donation_id} </p>
+
+Encontra uma doação pelo ID.
+
+Response (Se encontrada):
+```bash
+{
+    "status": "Success",
+    "message": "Donation processed successfully!",
+    "data": {
+        "donation": {
+            "donation_id": 1,
+            "address_account": "0x648485",
+            "cause_id": 1,
+            "value": 0.05
+        },
+    }
+}
+```
+<p> GET /donations </p>
+
+Lista as doações criadas.
+
+Response (Se a lista não estiver vazia):
+
+```bash
+{
+    "status": "Success",
+    "message": "Donations processed successfully!",
+    "data": {
+        "donation": {
+            "donation_id": 1,
+            "address_account": "0x648485",
+            "cause_id": 1,
+            "value": 0.05
+        },
+    }
+}
+```
+<p> DELETE /donations/{donation_id} </p>
+
+Deleta uma doação por ID, avisando sobre a manutenção da transação na rede Ethereum.
+
+Response (Se encontrada):
+
+```bash
+{
+    "status": "Success",
+    "message": "Donation deleted successfully, but the value of the transactions remains in Ethereum.",
+    "data": {
+        "donation": {
+            "donation_id": 1,
+            "address_account": "0x648485",
+            "cause_id": 1,
+            "value": 0.05
+        },
+    }
+}
+```
+
+<h1 align="center"> Autor </h1>
+
+<p>Douglas Holanda</p>
+                                                                                                                                                         
 
