@@ -201,8 +201,7 @@ Response:
             "address_account": "0x648485",
             "value": 0.05,
             "fk_cause": 1
-        },
-        "transaction_hash": "qzou2vsv17bdd93h6fh1639ohwz7k8ys21f6qe6n5mpsffz4v6dldwkj4kerxdv2"
+        }
     }
 }
 ```
