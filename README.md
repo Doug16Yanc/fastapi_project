@@ -199,8 +199,8 @@ Response:
         "donation": {
             "donation_id": 1,
             "address_account": "0x648485",
-            "cause_id": 1,
-            "value": 0.05
+            "value": 0.05,
+            "fk_cause": 1
         },
         "transaction_hash": "qzou2vsv17bdd93h6fh1639ohwz7k8ys21f6qe6n5mpsffz4v6dldwkj4kerxdv2"
     }
@@ -219,8 +219,8 @@ Response (Se encontrada):
         "donation": {
             "donation_id": 1,
             "address_account": "0x648485",
-            "cause_id": 1,
-            "value": 0.05
+            "value": 0.05,
+            "fk_cause": 1
         },
     }
 }
@@ -239,8 +239,8 @@ Response (Se a lista não estiver vazia):
         "donation": {
             "donation_id": 1,
             "address_account": "0x648485",
-            "cause_id": 1,
-            "value": 0.05
+            "value": 0.05,
+            "fk_cause": 1
         },
     }
 }
@@ -259,8 +259,8 @@ Response (Se encontrada):
         "donation": {
             "donation_id": 1,
             "address_account": "0x648485",
-            "cause_id": 1,
             "value": 0.05
+            "fk_cause": 1,
         },
     }
 }
