@@ -1,4 +1,4 @@
-from app import models, cause, donation
+from . import models, cause, donation
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .database import engine
@@ -20,8 +20,8 @@ app.add_middleware(
 )
 
 
-app.include_router(cause.router, tags=['Causes'], prefix='/api/causes')
-app.include_router(donation.router, tags=['Donations'], prefix='/api/donations')
+app.include_router(cause.router, tags=['Causes'])
+app.include_router(donation.router, tags=['Donations'])
 
 
 @app.get("/api/fastapi")
