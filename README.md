@@ -57,10 +57,17 @@ Abra o Visual Studio Code :
   code .
  ```
 
-Crie um arquivo main.py, escreva o código e execute o servidor com : 
+Crie um arquivo main.py dentro do diretório app que possua o arquivo __init__.py, escreva o código e execute o servidor com : 
   ```bash
   uvicorn main:app --reload
  ```
+Você pode criar o arquivo __init__.py com o seguinte comando no terminal:
+
+  ```bash
+  touch project/package/__init__.py
+ ```
+Trocando "project" e "package" pelos respectivos nomes de seus diretórios.
+
 Ou se preferir, apenas faça o git clone deste projeto :
 
   ```bash
