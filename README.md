@@ -6,12 +6,20 @@
   
 </p>
 
-<h3 align="center" width="60%"> Python + FastAPI </h3>
+<h3 align="center" width="60%"> Python + FastAPI + PostgreSQL</h3>
+
+<p align="center" width="50%">
+
+<img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="python"/>
+<img src="https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi" alt="fastapi"/>
+<img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="postgres"/>
+
+</p>
 
 <h1 align="center" width="100%"> Descrição </h1>
 
 <p>
-  O seguinte projeto backend realiza a gestão de doações em criptoativos para causas solidárias e humanitárias, neste caso, as doações são feitas em ETH, criptomoeda da rede blockchain Ethereum, conhecida pelo suporte aos contratos inteligentes e pela criptografia de curva elíptica, e os valores doados são convertidos em dólar americano. Como regras de negócio, ficou estabelecido que a exclusão de uma causa só pode ser realizada após ter recebido um valor em doação, por mínimo que seja e esse montante doado tenha sido utilizado para a sua proposta de fato, ou seja, o status do montante foi atualizado de "stored" para "applied" (armazenado para aplicado) e claramente essa atualização só pode acontecer após ter ocorrido pelo menos uma doação para esta causa. Cada causa possui um código de certificação que valida sua veracidade, cada doação tem seu hash (função matemática de sentido uniderecional nas interações na internet) e cada valor em ETH é simbólico (décimos ou centésimos que representam muitas vezes cumprimento de contratos inteligentes ou apenas um gas fee desse tipo de tecnologia de sistema distribuído) e quando convertidos para o dólar representam valores consideráveis. Como exemplo, usei uma causa solidária que ajuda vítimas humanas e outros animais de desastres ambientais e incêndios florestais.
+  O seguinte projeto backend realiza a gestão de doações em criptoativos para causas solidárias e humanitárias, neste caso, as doações são feitas em ETH, criptomoeda da rede blockchain Ethereum, conhecida pelo suporte aos contratos inteligentes e pela criptografia de curva elíptica, e os valores doados são convertidos em dólar americano. Como regras de negócio, ficou estabelecido que a exclusão de uma causa só pode ser realizada após ter recebido um valor em doação, por mínimo que seja e esse montante doado tenha sido utilizado para a sua proposta de fato, ou seja, o status do montante foi atualizado de "stored" para "applied" (armazenado para aplicado) e claramente essa atualização só pode acontecer após ter ocorrido pelo menos uma doação para esta causa e mais doações só podem ser realizadas a uma causa se esta ainda não tiver aplicado seu montante recebido. Cada causa possui um código de certificação que valida sua veracidade e cada valor em ETH é simbólico (décimos ou centésimos que representam muitas vezes cumprimento de contratos inteligentes ou apenas um gas fee desse tipo de tecnologia de sistema distribuído) e quando convertidos para o dólar representam valores consideráveis. Como exemplo, usei uma causa solidária que ajuda vítimas humanas e outros animais de desastres ambientais e incêndios florestais.
 </p>
 
 <h1 align="center" width="100%"> Como criar o projeto na sua máquina? </h1>
@@ -58,7 +66,7 @@ Ou se preferir, apenas faça o git clone deste projeto :
   ```bash
   git@github.com:Doug16Yanc/fastapi_project.git
  ```
-
+Utilize o PostgreSQL como banco de dados e coloque suas credenciais de uso.
 <h1 align="center" width="100%"> Rotas no Postman </h1>
 
 <p>Link das coleções no Postman:
@@ -172,7 +180,7 @@ Response (Conforme regra de negócio acima)
   
 <p> POST /donations </p>  
 
-Realiza uma doação em ETH para uma causa existente e válida.
+Realiza uma doação em ETH para uma causa existente e válida se o montante daquela causa ainda não tiver sido aplicado.
 
 Response:
 
